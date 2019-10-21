@@ -1,0 +1,66 @@
+<ion-content>
+  <!-- ******** Banner Area ********** -->
+  <div class="bannerArea">
+    <ion-row justify-content-center>
+      <ion-col size="12">
+        <h1 class="centerText titleText">Register</h1>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- ******** Content Area ********** -->
+  <ion-row class="pushContentDown">
+    <ion-col offsetXl="2" sizeXs="8">
+      <ion-row *ngIf="!authService.emailSent">
+        <ion-col size="12">
+          <form [formGroup]="registerForm" (ngSubmit)="onRegisterNewUser()">
+            <ion-item>
+              <ion-label>First Name:</ion-label>
+              <ion-input formControlName="nFirst" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Last Name:</ion-label>
+              <ion-input formControlName="nLast" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Email:</ion-label>
+              <ion-input autocomplete="true" formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password:</ion-label>
+              <ion-input #prePass formControlName="prePass" type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Confirm Password:</ion-label>
+              <ion-input (input)="checkPassMatch(registerForm.touched, $event.target.value)" formControlName="password"
+                type="password"></ion-input>
+            </ion-item>
+            <p *ngIf="missMatchPass"><strong>{{ missMatchPass }}</strong></p>
+            <p *ngIf="prePass.value.length < 6 && registerForm.touched">
+              <strong>Password must be at least 6 characters long</strong></p>
+            <hr>
+            <ion-button color="primary" type="Submit" [disabled]="!registerForm.valid"> Submit </ion-button>
+          </form>
+        </ion-col>
+        <ion-row>
+          <ion-col size="12">
+            <h3>Or</h3>
+            <ion-button class="googleLoginBtn" color="light" (click)="onGoogleLoginClick()">
+              <span>
+                <ion-icon name="logo-google"></ion-icon> Log in with Google
+              </span>
+            </ion-button>
+            <!-- <ion-button (click)="Test()">
+              Test
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+      </ion-row>
+      <ion-row *ngIf="authService.emailSent">
+        <ion-col size="12">
+          <h1>An Email has been sent to your inbox, please verify you received it by clicking on the link</h1>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <div class="footerSpace"></div>
+</ion-content>

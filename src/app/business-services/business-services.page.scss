@@ -1,0 +1,43 @@
+ion-tabs {
+    margin-top: 110px;
+    --ion-tabbar-background-color: #FBFBFB;
+    --ion-tabbar-text-color-active: #87BCDE;
+    --ion-tabbar-text-color: #424242;
+}
+
+
+h2, h3, h4 {
+    margin-top: 50px;
+    text-align: center;
+    color: #424242;
+}
+
+// Xl Screens 1140px and Higher
+@media screen and (min-width: 1140px) { 
+    
+}
+// lg Screen 960px to 1139px
+@media screen and (min-width: 960px) and (max-width: 1139px){ 
+
+}
+
+// md screen 720px to 956px Ipad Pro
+@media screen and (min-width: 720px) and (max-width: 956px) {
+    ion-tabs {
+        margin-top: 110px;
+    }
+}
+
+// xm 540px to 719px and under Blue Tablet
+@media screen and (min-width: 540px) and (max-width: 719px) {
+    ion-tabs {
+        margin-top: 14px;
+    }
+}
+
+// xs 539 and smaller Android Phone
+@media screen and (max-width: 539px) {
+    ion-tabs {
+        margin-top: 13px;
+    }
+}

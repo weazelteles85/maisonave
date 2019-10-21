@@ -1,0 +1,72 @@
+<ion-grid class="mainContent" fixed>
+    <ion-row>
+        <ion-col size="12">
+            <ion-grid fixed>
+                <ion-row justify-content-center>
+                    <ion-col class="paymentAmount" sizeXl="4" sizeLg="4" sizeMd="4" sizeXs="8">
+                        <ion-item>
+                            <ion-label>Amount: $</ion-label>
+                            <ion-input (input)="updateValue($event.target.value)" ng-model="myValue" type="number"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row justify-content-center>
+                    <ion-col sizeXl="4" sizeLg="4" sizeMd="4" sizeXs="8">
+                            <p>A paymnet will be made for: $ {{ displayAmount }}</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <fieldset>
+                <form #paymentForm="ngForm" (ngSubmit)="formHandler()" class="checkout">
+                    <div class="form-row">
+                        <label for="card-info">Pay with Credit or Debit Card</label>
+                        <div id="card-element" #cardElement></div>
+                        <div id="card-errors" class="help is-danger" role="alert" *ngIf="formError">{{ formError }}</div>
+                    </div>
+                    <div *ngIf="totalAmount; then pay else save;">
+                        <!-- ng-template appears here -->
+                    </div>
+                </form>
+            </fieldset>
+
+            <!-- Template when Charging Card -->
+            <ng-template #pay>
+                <ion-button type="submit" class="button is-info" [disabled]="!formComplete || loading"
+                    [class.is-loading]="loading">
+                    Sending Payment: {{ totalAmount | stripe | currency }}
+                </ion-button>
+                <div *ngIf="result?.id" class="notification is-success">
+                    Your Payment for {{ result.amount | stripe | currency }} was Successful
+                </div>
+                <!-- If error, show the user the raw error msg from Stripe -->
+                <div *ngIf="result?.error" class="notification is-danger">
+                    {{ result.error?.message }}
+                </div>
+
+            </ng-template>
+
+            <!-- Template when Saving Card for Later Use -->
+
+            <ng-template #save>
+                <ion-button expand="full" type="submit" class="button is-info" [disabled]="!formComplete || loading"
+                    [class.is-loading]="loading">
+                    Submit
+                </ion-button>
+
+                <div *ngIf="result?.id" class="notification is-success">
+                    Attached payment source {{ result.card.brand }} ending in {{ result.card.last4 }}
+                </div>
+                <!-- If error, show the user the raw error msg from Stripe -->
+                <div *ngIf="result?.error" class="notification is-danger">
+                    {{ result.error?.message }}
+                </div>
+                <div *ngIf="errorMessage" class="notification is-danger">
+                    {{ errorMessage }}
+                </div>
+            </ng-template>
+
+
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<div class="footerSpace"></div>

@@ -1,0 +1,21 @@
+ion-footer p {
+    text-align: center;
+}
+
+ion-content {
+    top: 80px;
+}
+
+ion-input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+ion-icon {
+    position: relative;
+    top: 4px;
+    font-size: 16pt;
+}
+
+.googleLoginBtn {
+    --background: #FBFBFB;
+}

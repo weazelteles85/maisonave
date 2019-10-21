@@ -1,0 +1,23 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    match /users/{userID} {
+  		allow read: if isOwner(userID) || isAdmin();
+  		allow write: if isOwner(userID) || isAdmin();
+		}
+    
+    /// FUNCTIONS BELLOW ///
+    function isOwner(userID) {
+    	return request.auth.uid == userID;
+    }
+    
+    function isAdmin() {
+     return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.IsAdmin;
+    }
+    
+    function isSignedIn() {
+    	return request.auth != null;
+    }
+    
+  }
+}

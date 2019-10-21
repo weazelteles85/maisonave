@@ -1,0 +1,86 @@
+ion-footer p {
+    text-align: center;
+}
+
+ion-content {
+    top: 50px;
+}
+
+ion-col {
+    color: #424242;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.alignEnd {
+    text-align: end;
+    align-self: flex-end;
+}
+
+.userBox {
+    border: 1px solid #424242;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.userBox:hover {
+    cursor: pointer;
+}
+
+.listColumn {
+    background-color: #bff4b0;
+    border: 1px solid #5EA549;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.listBox {
+    top: 0px;
+    height: 700px;
+    background-color: #e5e7e8;
+    border: 1px solid #424242;
+    border-radius: 8px;
+    color: #424242;
+}
+
+.detailColumn {
+    background-color: #CCDBDC;
+    border: 1px solid #424242;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.clientInfoGrid ion-row {
+    height: 30px;
+}
+
+.clientInfoGrid p {
+    margin: 0px;
+}
+
+.dropzone { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    height: 300px;
+    border: 2px dashed #5EA549;
+    border-radius: 5px;
+    background: white;
+    margin: 10px 0;
+
+    &.hovering {
+        border: 2px solid #5EA549;
+        color: #dadada !important;
+    }
+}
+
+progress::-webkit-progress-value {
+    transition: width 0.1s ease;
+}
+
+.progressBar {
+    width: 100%;
+}

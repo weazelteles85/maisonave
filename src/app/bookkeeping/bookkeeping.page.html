@@ -1,0 +1,16 @@
+<ion-content scroll-y="false" padding>
+    <ion-row>
+      <ion-col size="12">
+        <h3>Bookkeeping</h3>
+      </ion-col>
+    </ion-row>
+
+  <ion-tabs tabbar-highlight="true" tabbar-placement="top">
+      <ion-tab label="Monthly Bookkeeping" icon="calculator" href="/bookkeeping/(monthy-bookkeeping:monthy-bookkeeping)">
+        <ion-router-outlet name="monthy-bookkeeping"></ion-router-outlet>
+      </ion-tab>
+    <ion-tab label="Bank Reconciliation" icon="calendar" href="/bookkeeping/(bank-reconciliation:bank-reconciliation)">
+      <ion-router-outlet name="bank-reconciliation"></ion-router-outlet>
+    </ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Maisonave</title>
+
+  <base href="/" />
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png">
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+
+
+<body>
+  <!-- ##### INTERNET EXPLORER CODE BELOW ############### -->
+  <div style="color:#424242; background-color:#FBFBFB" id="IEBrowser">
+    <div style="margin-top:40px"></div>
+    <div style="margin:20px; padding: 10px;">
+      <img width="400" src="./assets/images/Logo.png" alt="Maisonave Logo">
+      <h1 style="position:relative; top:-150px; text-align: center">Welcome to <strong style="color:#5EA549">Maisonave.com</strong></h1>
+    </div>
+    <div style="text-align:left; margin: auto; width: 50%">
+      <h2 style="margin-top:-120px">Unfortunately you are using a browser that is out of date. <br>
+        To visit our website, please use 
+        <a target="blank" href="https://www.microsoft.com/en-us/windows/microsoft-edge">Microsoft Edge</a>
+        <a target="blank" href="https://www.google.com/chrome/">Google Chrome</a> or 
+        <a target="blank" href="https://www.mozilla.org/en-US/firefox/new/">Mozzila Firefox</a></h2>
+    </div>
+    <div style="text-align:center">
+      <h1>If you need any help, please contact us at:</h1>
+      <h2 style="text-align:left; margin: auto; width: 50%"> 
+        <strong>Phone:</strong> 718-575-8572 <br>
+        <strong>Email:</strong> taxinfo@maisonave.com <br>
+        <strong>Address:</strong> 68-63 108th St. Forest Hills, NY 11375
+      </h2>
+    </div>
+  </div>
+  <script>
+    var message = document.getElementById('IEBrowser');
+    if (/*@cc_on!@*/false || !!document.documentMode) {
+
+    } else {
+      message.style.visibility = 'hidden';
+    }
+  </script>
+  <!-- ############### END OF INTERNET EXPLORER ########## -->
+  <app-root></app-root>
+  <!--The conde to the left actually runs the website on all modern browsers-->
+</body>
+
+</html>

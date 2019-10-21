@@ -1,0 +1,57 @@
+<ion-content padding>
+  <ion-row>
+    <ion-col offset="2" sizeXl="8">
+      <ion-row>
+        <ion-col>
+          <h2>Login to your account</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <form [formGroup]="LoginForm" (ngSubmit)="onLoginWithEmail()">
+            <ion-item>
+              <ion-label>Email:</ion-label>
+              <ion-input autocomplete="true" [(ngModel)]="email" formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password:</ion-label>
+              <ion-input [(ngModel)]="password" formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <ion-text *ngIf="!LoginForm.valid && LoginForm.touched">Password must be at least 6 characters long</ion-text>
+            <hr>
+            <ion-button color="primary" type="Submit" [disabled]="!LoginForm.valid"> Submit </ion-button>
+          </form>
+          <ion-row>
+            <ion-col size="12">
+              <p>{{ authService.errorMessage }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <hr>
+      <hr>
+      <ion-row>
+        <ion-col size="12">
+          <h3>Or</h3>
+          <ion-button class="googleLoginBtn" color="light" (click)="onGoogleLoginClick()">
+            <span>
+              <ion-icon name="logo-google"></ion-icon> Log in with Google
+            </span>
+          </ion-button>
+          <!-- <ion-button (click)="Test()">
+            Test
+          </ion-button> -->
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <div class="footerSpace"></div>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <p>Do not have an account yet?<a routerLink="/register"> Register Here</a></p>
+    </ion-col>
+  </ion-row>
+</ion-footer>

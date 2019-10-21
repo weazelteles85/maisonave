@@ -1,0 +1,88 @@
+<!-- Header on Mobile Devices -->
+<ion-header *ngIf="windowSize < 768">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col float-left size="2">
+        <ion-buttons>
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col size="8">
+        <a href="/home">
+          <img class="logoImg" src="/assets/images/Logo.png" alt="Logo">
+        </a>
+      </ion-col>
+      <ion-col size="2" align-self-end>
+        <ion-button *ngIf="!user" color="primary" href="login" float-right>
+          <span>
+            <ion-icon color="light" name="log-in"></ion-icon>
+          </span>Login
+        </ion-button>
+        <ion-button *ngIf="user" color="primary" float-right (click)="onLogoutClick()" href="/">
+          <span>
+            <ion-icon color="light" name="log-out"></ion-icon>
+          </span>Logout
+        </ion-button>
+        
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Header on Desktops and with larger Monitors -->
+<ion-header *ngIf="windowSize >= 768">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6" float-left>
+        <a href="/home">
+          <img class="logoImg" src="/assets/images/Logo.png" alt="Logo">
+        </a>
+      </ion-col>
+      <ion-col size="6" float-right>
+        <ion-button *ngIf="!user" color="primary" float-right href="login">
+          <span>
+            <ion-icon color="light" name="log-in"></ion-icon>
+          </span>Login
+        </ion-button>
+        <ion-button *ngIf="user" color="primary" float-right (click)="onLogoutClick()" href="/">
+          <span>
+            <ion-icon color="light" name="log-out"></ion-icon>
+          </span>Logout
+        </ion-button>
+        <ion-button *ngIf="user" color="primary" float-right href="my-files" (click)="goToMyFiles()">
+          <span>
+            <ion-icon color="light" name="person"></ion-icon>
+          </span>My Files
+        </ion-button>
+        <ion-button *ngIf="auth.canDelete(user)" color="primary" href="admin-console" float-right (click)="goToAdminConsole()">
+          <span>
+            <ion-icon color="light" name="log-in"></ion-icon>
+          </span>Admin Console
+        </ion-button>
+        <ion-item *ngIf="!user" float-right href="register"> Register </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-row justify-content-center>
+          <ion-item loginc ion-active icon="home" href="/" (click)="onClickLink()">
+            <ion-icon name="home"></ion-icon> Home
+          </ion-item>
+          <ion-item #aboutUs href="tax-preparation" (click)="onClickLink()">
+            <ion-icon name="analytics"></ion-icon> Tax Preparation
+          </ion-item>
+          <ion-item #payroll href="payroll" (click)="onClickLink()">
+            <ion-icon name="logo-usd"></ion-icon> Payroll Services
+          </ion-item>
+          <ion-item #bookkeeping href="bookkeeping" (click)="onClickLink()">
+            <ion-icon name="book"></ion-icon> Bookkeeping
+          </ion-item>
+          <ion-item #businessServices href="business-services" (click)="onClickLink()">
+            <ion-icon name="briefcase"></ion-icon> Business Services
+          </ion-item>
+          <ion-item #ContactUs href="contact-us" (click)="onClickLink()">
+            <ion-icon name="call"></ion-icon> Contact Us
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>

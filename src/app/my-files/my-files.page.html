@@ -1,0 +1,104 @@
+<ion-content>
+  <!-- ******** Banner Area ********** -->
+  <div class="bannerArea">
+    <ion-row justify-content-center>
+      <ion-col size="12">
+        <h1 class="centerText titleText">My Files</h1>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- ******** Content Area ********** -->
+  <ion-row class="content">
+    <ion-col offsetXl="2" sizeXl="8">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <h1 class="centerText">Download your files and manage your profile from here</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card *ngIf="localUser">
+              <ion-card-header>
+                <ion-card-title class="centerText">Profile</ion-card-title>
+                <ion-card-subtitle class="centerText">Please make sure your information bellow is correct</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-item>
+                  <ion-label>First Name: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.NFirst" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Last Name: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.NLast" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Email: </ion-label>
+                  <ion-input autocomplete="true" disabled="true" [(ngModel)]="localUser.Email" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Address: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.Address" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label offSet="1">City: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.City" type="text"></ion-input>
+                  <ion-label offSet="1">State: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.State" type="text"></ion-input>
+                  <ion-label offSet="1">Zip: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.Zip" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Phone Number: </ion-label>
+                  <ion-input [(disabled)]="isReadOnly" [(ngModel)]="localUser.PhoneNumber" type="text"></ion-input>
+                </ion-item>
+                <ion-row align-items-end>
+                  <ion-col class="alignEnd" size="12">
+                    <ion-button *ngIf="isReadOnly" (click)="onEdit()">
+                      Edit
+                    </ion-button>
+                    <ion-button *ngIf="!isReadOnly" (click)="onSaveEdit()">
+                      Save
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title class="centerText">Your Files</ion-card-title>
+              </ion-card-header>
+              <ion-card-content *ngIf="localUser">
+                <ion-item *ngFor="let file of localUser.FilesUrl">
+                  <a target="blank" href="{{file.url}}">{{file.name}}</a>
+                </ion-item>
+                <p *ngIf="localUser.FilesUrl.length == 0" class="centerText">No files available</p>
+              </ion-card-content>
+            </ion-card>
+            <!-- <ion-button (click)="testPage()">
+              Test
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="auto">
+              <ion-item class="viewHistory">
+                <ion-label>View Payment History</ion-label>
+                <ion-toggle [(ngModel)]="isPaymentHistory"></ion-toggle>
+              </ion-item>
+            </ion-col>
+            <ion-col class="alignEnd" size="6">
+              <ion-button color="primary" (click)="isMakePayment = true">
+                Make a Payment
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <app-user-sources *ngIf="isPaymentHistory"></app-user-sources>
+  <app-payment-form *ngIf="isMakePayment"></app-payment-form>
+  <div class="footerSpace"></div>
+</ion-content>

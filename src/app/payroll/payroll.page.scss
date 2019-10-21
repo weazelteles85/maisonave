@@ -1,0 +1,63 @@
+ion-header {
+    position: relative;
+    top: 60px;
+}
+
+ion-title {
+    font-size: 1.3em;
+}
+
+.bannerArea {
+    position: relative;
+    width: 73%;
+    margin: auto;
+    background-image: url("/assets/images/PayrollBanner.jpg");
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 300px;
+}
+
+@import '.././bannerStyle.scss';
+
+.titleText {
+    top: 120px;
+    font-size: 3em;
+}
+
+// Xl Screens 1140px and Higher
+@media screen and (min-width: 1140px) { 
+    
+}
+
+// lg Screen 960px to 1139px
+@media screen and (min-width: 960px) and (max-width: 1139px){ 
+    .titleText {
+        top: 90px;
+        font-size: 2.5em;
+    }
+}
+
+// md screen 720px to 956px Ipad Pro
+@media screen and (min-width: 720px) and (max-width: 956px) {
+    .titleText {
+        top: 150px;
+        font-size: 2.6em;
+    }
+}   
+
+// xm 540px to 719px and under Blue Tablet
+@media screen and (min-width: 540px) and (max-width: 719px) {
+    .titleText {
+        top: 100px;
+        font-size: 2em;
+    }
+}
+
+// xs 539 and smaller Android Phone
+@media screen and (max-width: 539px) {
+    .titleText {
+        top: 100px;
+        font-size: 2em;
+    }
+}

@@ -1,0 +1,12 @@
+.bannerArea {
+    position: relative;
+    width: 73%;
+    margin: auto;
+    background-image: url("/assets/images/PayrollBanner.jpg");
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 260px;
+}
+
+@import '../../bannerStyle.scss';

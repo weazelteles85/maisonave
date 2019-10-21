@@ -1,0 +1,139 @@
+ion-header {
+    position: relative;
+    top: 60px;
+}
+ion-content { // <--- THis tag is used in the global but is required here for Edge Browser from microsoft
+    background-color: #FBFBFB;
+}
+
+ion-input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+ion-textarea.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.bannerArea {
+    position: relative;
+    top: 60px;
+    width: 70%;
+    margin: auto;
+    background-image: url("/assets/images/contact-us.png");
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 300px;
+}
+
+@import '.././bannerStyle.scss';
+
+.titleText {
+    top: 100px;
+    font-size: 3em;
+}
+
+.phoneNumberText {
+    font-size: 18pt;
+    font-family: 'Open Sans', sans-serif;
+}
+
+ion-icon {
+    font-size: 30pt;
+    --color: #5EA549;
+}
+
+ion-card, ion-card-title {
+    color: #FBFBFB;
+    background-color: #424242;
+}
+
+form {
+    background-color: #F9FCF6;
+}
+
+ion-item {
+    color: #262626;
+    font-size: 16pt;
+}
+
+ion-item:hover {
+    color: #F9FCF6;
+}
+
+ion-icon {
+    color: #ED7F1E;
+}
+
+.descriptionHeight {
+
+}
+
+// Xl Screens 1140px and Higher
+@media screen and (min-width: 1140px) { 
+    
+    
+}
+// lg Screen 960px to 1139px
+@media screen and (min-width: 960px) and (max-width: 1139px){ 
+    
+}
+
+// md screen 720px to 956px Ipad Pro
+@media screen and (min-width: 720px) and (max-width: 956px) {
+    .bannerArea {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 103%;
+        height: 340px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 150px;
+        font-size: 28pt;
+        text-transform: uppercase;
+    }
+}   
+
+// xm 540px to 719px and under Blue Tablet
+@media screen and (min-width: 540px) and (max-width: 719px) {
+    .bannerArea {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 103%;
+        height: 340px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 130px;
+        font-size: 28pt;
+        text-transform: uppercase;
+    }
+
+    .phoneNumberText {
+        font-size: 14pt;
+        padding-left: 6px;
+    }
+
+}
+
+// xs 539 and smaller Android Phone
+@media screen and (max-width: 539px) {
+    .bannerArea {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 103%;
+        height: 260px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 80px;
+        font-size: 28pt;
+    }
+
+}

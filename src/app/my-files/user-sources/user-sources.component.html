@@ -1,0 +1,35 @@
+<ion-grid class="mainContent" fixed>
+  <ion-row>
+    <ion-col size="12">
+      <!--**************** THE CODE BELLOW IS FOR DISPLAYING THE CREDIT CARDS CUSTOMER HAS ON FILE ************-->
+      <!-- <div *ngIf="(customer$ | async)?.sources.data as sources; else loading;">
+        <div *ngIf="sources.length">
+          <ul *ngFor="let source of sources">
+            <li>
+              {{ source.id }} -- Card {{ source.card.brand }} ending in {{ source.card.last4 }}
+              Test Data {{ source.description }}
+              <button *ngIf="canSelect" (click)="clickHandler(source)" class="button is-info is-small">Select</button>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!sources.length">No payment sources found on this stripe customer account</div>
+      </div> -->
+      <h4>Payment History</h4>
+      <div *ngIf="charges$ | async as charges; else loading;">
+        <div *ngIf="charges.length">
+          <ion-list *ngFor="let charge of charges">
+            <ion-item>
+              <ion-col size="4">Date: {{ timeConverter(charge.created) }}</ion-col>
+              <ion-col size="4">Amount: {{ charge.amount | stripe | currency }}</ion-col>
+              <ion-col size="4">Status: {{ charge.status }}</ion-col>
+            </ion-item>
+          </ion-list>     
+        </div>
+        <div *ngIf="!charges.length">No charges found on this account</div>
+      </div>
+      <ng-template #loading>
+        <i class="fa fa-refresh fa-spin"></i> Loading payment history...
+      </ng-template>
+    </ion-col>
+  </ion-row>
+</ion-grid>

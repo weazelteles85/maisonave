@@ -1,0 +1,16 @@
+
+<ion-content scroll-y="false" padding>
+  <ion-row>
+    <ion-col size="12">
+        <h2>Business Services</h2>
+    </ion-col>
+  </ion-row>
+  <ion-tabs tabbar-highlight="true" tabbar-placement="top">
+    <ion-tab label="Small Business" icon="business" href="/business-services/(small-business:small-business)">
+      <ion-router-outlet name="small-business"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Corporate" icon="pie" href="/business-services/(corporate:corporate)">
+      <ion-router-outlet name="corporate"></ion-router-outlet>
+    </ion-tab>
+  </ion-tabs>
+</ion-content>

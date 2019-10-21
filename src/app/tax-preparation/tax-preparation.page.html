@@ -1,0 +1,19 @@
+<ion-content scroll-y="false" padding>
+    <ion-row>
+      <ion-col size="12">
+        <h3>Tax Preparation</h3>
+      </ion-col>
+    </ion-row>
+
+  <ion-tabs tabbar-highlight="true" tabbar-placement="top">
+    <ion-tab label="Personal Income" icon="cash" href="/tax-preparation/(personal-income:personal-income)">
+      <ion-router-outlet name="personal-income"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Corporate Income" icon="pie" href="/tax-preparation/(corporate-income:corporate-income)">
+      <ion-router-outlet name="corporate-income"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab label="Sales Tax" icon="pricetags" href="/tax-preparation/(sales-tax:sales-tax)">
+      <ion-router-outlet name="sales-tax"></ion-router-outlet>
+    </ion-tab>
+  </ion-tabs>
+</ion-content>

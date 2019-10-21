@@ -1,0 +1,93 @@
+<ion-show-when size="xl">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title class="centerText">Contact Us</ion-title>
+        </ion-toolbar>
+    </ion-header>
+</ion-show-when>
+<ion-content>
+  <!-- ******** Banner Area ********** -->
+  <div class="bannerArea">
+    <ion-row justify-content-center>
+      <ion-col size="12">
+        <h1 class="centerText titleText">Contact Us</h1>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- ******** End Of Banner Area ********** -->
+  <ion-row class="contentArea">
+    <ion-col offsetXl="2" sizeXl="8">
+      <hr>
+      <ion-row padding>
+        <ion-col sizeXl="6" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+          <a target="blank" href="http://maps.google.com/?q=68-63 108th St. Forest Hills, NY 11375">
+            <ion-card>
+              <ion-card-content>
+                <ion-row align-items-center>
+                  <ion-col align-self-end size="2">
+                    <span>
+                      <ion-icon color="primary" slot="start" name="pin"></ion-icon>
+                    </span>
+                  </ion-col>
+                  <ion-col size="10">
+                    <p>
+                      68-63 108th St.<br>
+                      Forest Hills, NY 11375
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </a>
+        </ion-col>
+        <ion-col sizeXl="6" sizeLg="6" sizeMd="6" sizeSm="6" sizeXs="12">
+          <a target="blank" href="tel:718-575-8572">
+            <ion-card>
+              <ion-card-content>
+                <ion-row align-items-center>
+                  <ion-col align-self-end size="2">
+                    <span>
+                      <ion-icon color="primary" slot="start" name="call"></ion-icon>
+                    </span>
+                  </ion-col>
+                  <ion-col size="10">
+                    <p class="phoneNumberText">718-575-8572</p>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </a>
+        </ion-col>
+      </ion-row>
+      <div *ngIf="isSubmited; then submited else form;"></div>
+      <!-- ngTemplate will appear here -->
+      <ng-template #form>
+        <ion-row>
+          <ion-col size="12">
+            <form [formGroup]="contactUsForm" (ngSubmit)="sendEmail()">
+              <ion-item>
+                <ion-label>Name: </ion-label>
+                <ion-input formControlName="name" type="text" name="title"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Email: </ion-label>
+                <ion-input formControlName="email" type="email" name="description"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Description: </ion-label>
+                <ion-textarea formControlName="description" name="description"></ion-textarea>
+              </ion-item>
+              <ion-button [disabled]="!contactUsForm.valid" size="large" expand="full" ion-button type="submit" block>Submit</ion-button>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+      <ng-template #submited>
+        <div class="centerText">
+          <h2>Thank you for contacting us, we will reply to you soon</h2>
+        </div>
+      </ng-template>
+    </ion-col>
+  </ion-row>
+  <div class="footerSpace"></div>
+</ion-content>

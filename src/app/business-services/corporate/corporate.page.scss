@@ -1,0 +1,110 @@
+.bannerArea {
+    position: relative;
+    width: 73%;
+    margin: auto;
+    background-image: url("/assets/images/CorporateIncomeBanner.png");
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 260px;
+}
+.centerText {
+    text-align: center;
+}
+
+.titleText {
+    text-align: center;
+    position: relative;
+    top: 30px;
+    color: #FBFBFB;
+    font-size: 4em;
+    text-shadow: -2px 0 #424242, 0 2px #424242, 2px 0 #424242, 0 -2px #424242;
+}
+
+p.titleText {
+    font-size: 2em;
+    margin-top: -10px;
+}
+
+.contentArea {
+    position: relative;
+    top: 40px;
+}
+
+
+// Xl Screens 1140px and Higher
+@media screen and (min-width: 1140px) { 
+    
+    
+}
+// Custom Size
+@media screen and (min-width: 1140px) and (max-width: 1500px){ 
+    
+}
+// lg Screen 960px to 1139px
+@media screen and (min-width: 960px) and (max-width: 1139px){ 
+    
+}
+
+// md screen 720px to 956px Ipad Pro
+@media screen and (min-width: 720px) and (max-width: 956px) {
+    .bannerArea {
+        position: relative;
+        width: 103%;
+        height: 340px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 100px;
+        font-size: 32pt;
+    }
+    p.titleText {
+        font-size: 1.7em;
+        margin-top: -10px;
+    }
+
+}   
+
+// xm 540px to 719px and under Blue Tablet
+@media screen and (min-width: 540px) and (max-width: 719px) {
+    .bannerArea {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 103%;
+        height: 340px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 80px;
+        font-size: 28pt;
+    }
+    p.titleText {
+        font-size: 1.5em;
+        margin-top: -10px;
+    }
+
+}
+
+// xs 539 and smaller Android Phone
+@media screen and (max-width: 539px) {
+    .bannerArea {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 103%;
+        height: 340px;
+    }
+    
+    .titleText {
+        position: relative;
+        top: 100px;
+        font-size: 26pt;
+    }
+    p.titleText {
+        font-size: 1.4em;
+        margin-top: -10px;
+    }
+}

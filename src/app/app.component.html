@@ -1,0 +1,71 @@
+<ion-app>
+  <ion-menu>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>
+              {{p.title}}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <app-header></app-header> <!--<------ App Header is right here-->
+  <ion-router-outlet *ngIf="windowSize < 768" style="margin-top:50px" main></ion-router-outlet>
+  <ion-router-outlet *ngIf="windowSize >= 768" style="margin-top:90px" main></ion-router-outlet>
+  <!-- Footer Bellow -->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-show-when size="xl, lg, md, sm">
+        <ion-row>
+          <ion-col offsetXl="1" size="5">
+            <p>
+              <strong>Tel: </strong><a href="tel:718-575-8572">718-575-8572 </a><br>
+              <strong>Email: </strong><a href="mailto:taxinfo@maisonave.com">taxinfo@maisonave.com</a>
+            </p>
+          </ion-col>
+          <ion-col sizeXl="4">
+            <p><strong>Address: </strong><br><a target="blank" href="http://maps.google.com/?q=68-63 108th St Forest Hills, NY 11375">
+                68-63 108th St. Forest Hills, NY 11375</a></p>
+          </ion-col>
+          <ion-show-when size="xl">
+            <ion-col size="2">
+              <p style="text-align:end">Website by: <span><img src="/assets/icon/LogoBlackLong.png" alt="Teles Apps Logo"></span></p>
+            </ion-col>
+          </ion-show-when>
+          <ion-hide-when size="xl">
+            <ion-col size="1"></ion-col>
+            <img id="smallLogo" src="/assets/icon/HexEmpty.png" alt="Teles Apps Small Logo">
+          </ion-hide-when>
+        </ion-row>
+      </ion-show-when>
+      <ion-hide-when size="xl, lg, md, sm">
+        <ion-row>
+          <ion-col size="2"><img src="/assets/icon/HexEmpty.png" style="width:35px" alt=""></ion-col>
+          <ion-col offset="1" size="4">
+            <ion-button href="http://maps.google.com/?q=68-63 108th St Forest Hills, NY 11375" expand="block" color="primary">
+              <ion-icon color="light" slot="icon-only" name="pin"></ion-icon>
+              <!-- <ion-icon color="light" slot="icon-only" name="call"></ion-icon> -->
+            </ion-button>
+          </ion-col>
+          <ion-col offset="1" size="4">
+            <a href="tel:1-718-575-8572">
+              <ion-button expand="block" color="primary">
+                <ion-icon color="light" slot="icon-only" name="call"></ion-icon>
+              </ion-button>
+            </a>
+            <ion-icon slot="center" name="call"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-hide-when>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

@@ -1,0 +1,124 @@
+<ion-content padding>
+  <h1 class="centerText">Admin Console Page</h1>
+  <ion-row>
+    <!--This is the list of Users Here-->
+    <ion-col class="listColumn" size="5">
+      <h2 class="centerText">Clients:</h2>
+      <ion-content class="listBox">
+        <div *ngFor="let user of localListOfUsers let i = index">
+          <ion-item class="userBox" (click)="setSelectedUser(i)">
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="2">Name: </ion-col>
+                <ion-col size="8"> {{ user.NLast }}, {{ user.NFirst }}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="2">Email: </ion-col>
+                <ion-col size="8">{{ user.Email }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </ion-content>
+    </ion-col>
+    <!--Client Details Bellow Here-->
+    <ion-col class="detailColumn" size="7">
+      <h2 class="centerText">Client Selected:</h2>
+      <ion-row *ngIf="!selectedUser">
+        <ion-col size="12">
+          <h3 class="centerText">Please select a client</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedUser">
+        <ion-col size="7">
+          <ion-grid class="clientInfoGrid" fixed>
+            <ion-row>
+              <ion-col size="12"><p><strong>Fist Name: </strong> {{ selectedUser.NFirst }}</p></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12"><p><strong>Last Name: </strong> {{ selectedUser.NLast }}</p></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12"><p><strong>Email: </strong> {{ selectedUser.Email }}</p></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="auto"><p><strong>Address: </strong></p></ion-col>
+              <ion-col size="auto">
+                <p>{{ selectedUser.Address }}</p>
+                <p>{{ selectedUser.City }}, {{ selectedUser.State }} {{ selectedUser.Zip }} </p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12"><br><p><strong>Phone Number: </strong>{{ selectedUser.PhoneNumber }}</p></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item>
+            <ion-label>Role:</ion-label>
+            <ion-select #selector (ionChange)="onRoleChange(selector)" selectedText="{{roleString}}" [disabled]="!localUser.IsAdmin"
+              [interfaceOptions]="customPopoverOptions" interface="popover">
+              <ion-select-option value="admin">Admin</ion-select-option>
+              <ion-select-option value="editor">Editor</ion-select-option>
+              <ion-select-option value="subscriber">Subscriber</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="12">
+              <h3>Uploaded Files:</h3>
+              <div *ngFor="let file of selectedUser.FilesUrl let i = index">
+                <ion-item>
+                  <ion-col size="6">
+                    <a target="blank" href="{{ file.url }}"> {{ file.name }} </a>
+                  </ion-col>
+                  <ion-col class="alignEnd" size="6">
+                    <ion-button color="danger" (click)="onDeleteItem(file)">
+                      Delete
+                    </ion-button>
+                  </ion-col>
+                </ion-item>
+              </div>
+              <!-- <p *ngIf="selectedUser.FilesUrl.length == 0">none</p> -->
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <input type="file" (change)="startUpload($event.target.files)">
+              <div class="dropzone" appDropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+                [class.hovering]="isHovering">
+                <h3>Drop Zone</h3>
+                <p>Drag and drop Files here</p>
+                <div class="file">
+                  <label class="file-label"></label>
+                </div>
+              </div>
+              <div *ngIf="percentage | async as pct">
+                <progress class="progressBar" [value]="pct" max="100"></progress>
+              </div>
+              <div *ngIf="(snapshot | async) as snap">
+                {{ snap.bytesTransferred }}
+              </div>
+              <div *ngIf="downloadURL | async as url">
+                <div *ngFor="let link of listOfDownloadURL"></div>
+                <a href="{{link}}">{{link}}</a>
+              </div>
+              <!-- <ion-button (click)="task.cancel()">
+                Cancel
+              </ion-button> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col size="12">
+      <ion-button (click)="TestPage()">
+        Test Page
+      </ion-button>
+    </ion-col>
+  </ion-row> -->
+  <div class="footerSpace"></div>
+</ion-content>

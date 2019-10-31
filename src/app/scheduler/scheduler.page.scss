@@ -18,7 +18,7 @@ ion-textarea.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
     top: 60px;
     width: 70%;
     margin: auto;
-    background-image: url("/assets/images/contact-us.png");
+    background-image: url("/assets/images/CalendarImg.jpg");
     background-size:     cover;                     
     background-repeat:   no-repeat;
     background-position: center center; 
@@ -32,24 +32,11 @@ ion-textarea.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
     font-size: 3em;
 }
 
-.phoneNumberText {
-    font-size: 18pt;
-    font-family: 'Open Sans', sans-serif;
-}
-
 ion-icon {
     font-size: 30pt;
     --color: #5EA549;
 }
 
-ion-card, ion-card-title {
-    color: #FBFBFB;
-    background-color: #424242;
-}
-
-form {
-    background-color: #F9FCF6;
-}
 
 ion-item {
     color: #262626;
@@ -58,14 +45,6 @@ ion-item {
 
 ion-item:hover {
     color: #F9FCF6;
-}
-
-ion-icon {
-    color: #ED7F1E;
-}
-
-.descriptionHeight {
-
 }
 
 // Xl Screens 1140px and Higher
@@ -109,11 +88,6 @@ ion-icon {
         position: relative;
         top: 130px;
         font-size: 28pt;
-    }
-
-    .phoneNumberText {
-        font-size: 14pt;
-        padding-left: 6px;
     }
 
 }

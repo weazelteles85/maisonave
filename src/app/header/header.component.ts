@@ -44,5 +44,12 @@ export class HeaderComponent implements OnInit {
     else console.log('Acess Denied Must be Admin');
   }
 
+  goToAdminScheduler() {
+    if (this.auth.canDelete(this.user)) {
+      console.log("Acess Granted")
+    }
+    else console.log('Acess Denied Must be Admin');
+  }
+
 
 }

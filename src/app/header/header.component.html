@@ -54,9 +54,14 @@
             <ion-icon color="light" name="person"></ion-icon>
           </span>My Files
         </ion-button>
+        <ion-button *ngIf="auth.canDelete(user)" color="primary" href="admin-scheduler" float-right (click)="goToAdminScheduler()">
+          <span>
+            <ion-icon color="light" name="calendar"></ion-icon>
+          </span>Admin Schedule
+        </ion-button>
         <ion-button *ngIf="auth.canDelete(user)" color="primary" href="admin-console" float-right (click)="goToAdminConsole()">
           <span>
-            <ion-icon color="light" name="log-in"></ion-icon>
+            <ion-icon color="light" name="contact"></ion-icon>
           </span>Admin Console
         </ion-button>
         <ion-item *ngIf="!user" float-right href="register"> Register </ion-item>
@@ -80,6 +85,9 @@
           </ion-item>
           <ion-item #ContactUs href="contact-us" (click)="onClickLink()">
             <ion-icon name="call"></ion-icon> Contact Us
+          </ion-item>
+          <ion-item #ContactUs href="scheduler" (click)="onClickLink()">
+            <ion-icon name="calendar"></ion-icon> Appointments
           </ion-item>
         </ion-row>
       </ion-col>

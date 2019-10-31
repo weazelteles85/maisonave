@@ -28,8 +28,10 @@ const routes: Routes = [
   { path: 'small-business', loadChildren: './business-services/small-business/small-business.module#SmallBusinessPageModule' },
   { path: 'corporate', loadChildren: './business-services/corporate/corporate.module#CorporatePageModule' },
   { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' },
-  { path: 'my-files', loadChildren: './my-files/my-files.module#MyFilesPageModule', canActivate:[SubscribeGuard] },
-  { path: 'admin-console', loadChildren: './admin-console/admin-console.module#AdminConsolePageModule', canActivate:[AdminGuard] },
+  { path: 'my-files', loadChildren: './my-files/my-files.module#MyFilesPageModule', canActivate: [SubscribeGuard] },
+  { path: 'admin-console', loadChildren: './admin-console/admin-console.module#AdminConsolePageModule', canActivate: [AdminGuard] },
+  { path: 'admin-scheduler', loadChildren: './admin-scheduler/admin-scheduler.module#AdminSchedulerPageModule', canActivate: [AdminGuard] },
+  { path: 'scheduler', loadChildren: './scheduler/scheduler.module#SchedulerPageModule' },
 ];
 
 @NgModule({

@@ -52,6 +52,11 @@ export class AppComponent {
       url: '/register',
       icon: 'book'
     },
+    {
+      title: 'Schedule',
+      url: '/scheduler',
+      icon: 'calendar'
+    },
   ];
 
   constructor(

@@ -17,5 +17,4 @@ export class DataStorageService {
     this.listOfUsers.subscribe(users => console.log(users));
   }
 
-  
 }

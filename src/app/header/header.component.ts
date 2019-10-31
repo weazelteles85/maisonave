@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   windowSize: number;
 
   ngOnInit() {
+    console.log('Running Version 1.2');
     this.windowSize = window.innerWidth;
     this.auth.user$.subscribe(user => this.user = user);
   }

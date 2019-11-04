@@ -3,11 +3,22 @@ ion-header {
     top: 60px;
 }
 
+.headerTitle {
+    text-align: center;
+    margin-bottom: -20px;
+}
+
 .centerText {
     text-align: center;
 }
 
+.calendarViewButtons {
+    margin-top: 6px;
+    float: right;
+    position: absolute;
+}
+
 .contentArea {
     position: relative;
-    top: 30px;
+    top: 50px;
 }

@@ -26,11 +26,8 @@ import { PaymentService } from './my-files/payment/payment.service';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HeaderComponent, 
-    //UserSourcesComponent, 
-    //PaymentFormComponent,
-    //StripePipe
+    AppComponent,
+    HeaderComponent,
   ],
   entryComponents: [],
   imports: [

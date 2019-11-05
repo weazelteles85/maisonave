@@ -30,4 +30,4 @@ const routes: Routes = [
   ],
   declarations: [AdminSchedulerPage, SetScheduleComponent]
 })
-export class AdminSchedulerPageModule {}
+export class AdminSchedulerPageModule { }

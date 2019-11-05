@@ -7,7 +7,7 @@ import { CalendarEvent, CalendarEventTitleFormatter, CalendarEventAction, Calend
 //import { FlatpickrOptions } from 'ng2-flatpickr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Events } from '@ionic/angular';
-import { MyEvents } from '../core/events.interface';
+//import { MyEvents } from '../core/events.interface';
 
 const colors: any = {
   red: {
@@ -24,11 +24,11 @@ const colors: any = {
   }
 };
 
-class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-  month(event: MyEvents): string {
-  return `Title: ${event.title}, Time: ${event.start}, End: ${event.end}`;
-  }
-}
+// class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+//   month(event: MyEvents): string {
+//   return `Title: ${event.title}, Time: ${event.start}, End: ${event.end}`;
+//   }
+// }
 
 @Component({
   selector: 'app-admin-scheduler',
@@ -40,7 +40,7 @@ export class AdminSchedulerPage implements OnInit {
   excludeDays: number[] = [];
   dayStartHour = 8;
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {  }) modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();

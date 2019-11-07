@@ -22,6 +22,7 @@ import { UserSourcesComponent } from './my-files/user-sources/user-sources.compo
 import { PaymentFormComponent } from './my-files/payment/payment-form/payment-form.component';
 import { StripePipe } from './stripe.pipe';
 import { PaymentService } from './my-files/payment/payment.service';
+import { TimeFormatPipe } from './shared/time-format.pipe';
 
 
 @NgModule({

@@ -9,6 +9,8 @@ import { AdminSchedulerPage } from './admin-scheduler.page';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SetScheduleComponent } from './set-schedule/set-schedule.component';
+import { AppModule } from '../app.module';
+import { TimeFormatPipe } from '../shared/time-format.pipe';
 
 const routes: Routes = [
   {
@@ -28,6 +30,6 @@ const routes: Routes = [
       useFactory: adapterFactory
     })
   ],
-  declarations: [AdminSchedulerPage, SetScheduleComponent]
+  declarations: [AdminSchedulerPage, SetScheduleComponent, TimeFormatPipe]
 })
 export class AdminSchedulerPageModule { }

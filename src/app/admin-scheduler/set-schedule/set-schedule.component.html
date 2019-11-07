@@ -4,25 +4,26 @@
       <ion-text class="centerText">
         <h1>Set your Weekly Schedule</h1>
       </ion-text>
+      <ion-toggle [(ngModel)]="isSundayFirst" color="primary"></ion-toggle>
+      <span style="position: relative; top: -12px;"><strong>Sunday First</strong></span>
     </ion-col>
   </ion-row>
   <ion-grid>
       <ion-row *ngIf="scheduleSer.localWeekDays">
-        <ion-col *ngFor="let weekDay of scheduleSer.localWeekDays" class="weekDay">
+        <ion-col *ngFor="let weekDay of checkIfSundayFirst()" class="weekDay">
           <h3 class="centerText"> {{ weekDay.day }}</h3>
           <ion-item>
             <ion-label position='stacked'>Start:</ion-label>
-            <ion-select selectedText="{{ weekDay.startStr }}" (ionChange)='changeStartValue($event, weekDay.startStr)'>
-              <ion-select-option *ngFor="let hour of dayTimeSelection"> {{ hour }}</ion-select-option>
+            <ion-select selectedText="{{ weekDay.start | timeFormat }}" (ionChange)='changeStartValue($event, weekDay)'>
+              <ion-select-option *ngFor="let hour of dayTimeSelection"> {{ hour | timeFormat }}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label position='stacked'>End:</ion-label>
-            <ion-select selectedText="{{ weekDay.endStr }}" (ionChange)='changeEndValue($event, weekDay.endStr)'>
-              <ion-select-option *ngFor="let hour of dayTimeSelection"> {{ hour }}</ion-select-option>
+            <ion-select selectedText="{{ weekDay.end | timeFormat }}" (ionChange)='changeEndValue($event, weekDay)'>
+              <ion-select-option *ngFor="let hour of dayTimeSelection"> {{ hour | timeFormat }}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
-      <!-- COPY THE CODE ABOVE 6 MORE TIMES FOR EACH DAY OF THE WEEK -->
     </ion-grid>

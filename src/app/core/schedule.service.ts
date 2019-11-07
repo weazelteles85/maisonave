@@ -10,16 +10,11 @@ export class ScheduleService {
 
   weekDays$: Observable<Array<MyWeekday>>;
   localWeekDays: Array<MyWeekday> = [];
-  isSundayFirst = true;
 
   constructor(public afs: AngularFirestore) {
     this.weekDays$ = <Observable<Array<MyWeekday>>>this.afs.doc('admin/workHours').valueChanges();
-    this.weekDays$.subscribe((weekdayObj) => {
-      this.localWeekDays = weekdayObj['weekDays'];
-      if (this.isSundayFirst) {
-        console.log(this.localWeekDays);
-        this.setSundayAsFirst();
-      }
+    this.weekDays$.subscribe((weekdaysObj) => {
+      this.localWeekDays = weekdaysObj['weekDays'];
     });
   }
 
@@ -29,8 +24,4 @@ export class ScheduleService {
     docRef.set(data, { merge: true });
   }
 
-  setSundayAsFirst() {
-    const sunday = this.localWeekDays.pop();
-    this.localWeekDays.unshift(sunday);
-  }
 }

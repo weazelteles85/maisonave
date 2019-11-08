@@ -12,7 +12,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Events } from '@ionic/angular';
 import { ScheduleService } from '../core/schedule.service';
 import { Appointments } from '../interfaces/appointments.interface';
-//import { MyEvents } from '../core/events.interface';
 
 const colors: any = {
   red: {
@@ -29,22 +28,39 @@ const colors: any = {
   }
 };
 
-// class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-//   month(event: MyEvents): string {
-//   return `Title: ${event.title}, Time: ${event.start}, End: ${event.end}`;
-//   }
-// }
+class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+  month(event: Appointments): string {
+    let ampm = "AM";
+    let hr = event.start.getHours();
+    let min = event.start.getMinutes().toString();
+    if (hr > 12) {
+      hr -= 12;
+      ampm = "PM";
+    }
+    if (min < '10') {
+      min = '0' + min;
+    }
+    let desc = '';
+    if (event.desc != null) {
+      desc = event.desc;
+    }
+    return `${event.title}, Start: ${hr}:${min} ${ampm} | '${desc}'`;
+  }
+}
 
 @Component({
   selector: 'app-admin-scheduler',
   templateUrl: './admin-scheduler.page.html',
   styleUrls: ['./admin-scheduler.page.scss'],
+  providers: [{
+    provide: CalendarEventTitleFormatter,
+    useClass: CustomEventTitleFormatter
+  }]
 })
 export class AdminSchedulerPage implements OnInit {
 
   excludeDays: number[] = [];
   dayStartHour = 8;
-  weekStartDay;
 
   @ViewChild('modalContent', {}) modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
@@ -76,29 +92,20 @@ export class AdminSchedulerPage implements OnInit {
 
   activeDayIsOpen: boolean = false;
   datePickerForm: FormGroup;
-  events: CalendarEvent[] = [
-    {
-      title: 'string',
-      start: new Date(),
-      end: new Date(),
-    }
-  ];
+  events: CalendarEvent[] = [];
 
-  constructor(public scheduleServices: ScheduleService) { }
+  constructor(public scheduleServices: ScheduleService) {
+
+  }
 
   ngOnInit() {
-    this.scheduleServices.calendarEvents$.subscribe((events: Array<Appointments>) => {
+    this.scheduleServices.calendarEvents$.subscribe((events: Array<any>) => {
       console.log('inside subsctibe');
-      console.log(events);
-      events.forEach(event => {
-        this.events.push({
-          title: event.title,
-          start: new Date(event.start),
-          end: new Date(event.end)
-        });
+      events.forEach(element => {
+        element.start = new Date(element.start.seconds * 1000);
+        element.end = new Date(element.end.seconds * 1000);
       });
-      console.log(events);
-      this.refresh.next();
+      this.events = events;
     });
   }
 
@@ -118,15 +125,18 @@ export class AdminSchedulerPage implements OnInit {
     }
   }
 
-  changeStartDay(event) {
-    if (event.detail.checked) {
-      this.weekStartDay = 0;
-      this.refresh.next();
-    } else {
-      this.weekStartDay = 1;
-      this.refresh.next();
-    }
-    console.log(this.weekStartDay);
+  eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent): void {
+    this.events = this.events.map(iEvent => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd
+        };
+      }
+      return iEvent;
+    });
+    this.handleEvent('Dropped or resized', event);
   }
 
   handleEvent(action: string, event): void {
@@ -138,14 +148,22 @@ export class AdminSchedulerPage implements OnInit {
     this.view = view;
   }
 
-  addEvent(date): void {
-    console.log(date);
+  testRefresh() {
+    //this.addEvent();
+  }
+
+  addEvent(appointment): void {
+    const test = new Date();
+    const start = new Date(appointment.start.seconds * 1000);
+    const end = new Date(appointment.end.seconds * 1000);
+    console.log('start:', start);
+    console.log('end: ', end);
     this.events = [
       ...this.events,
       {
-        title: 'Event Title Here',
-        start: startOfDay(date),
-        end: endOfDay(date.setDate(date.getDate() + 1)),
+        title: appointment.title,
+        start: startOfDay(start),
+        end: endOfDay(end),
         color: colors.red,
         draggable: false,
         resizable: {
@@ -165,12 +183,5 @@ export class AdminSchedulerPage implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-    body.forEach(day => {
-      if (day.date.getDate() % 2 === 1) {
-        //day.cssClass = this.cssClass;
-      }
-    });
-  }
 
 }

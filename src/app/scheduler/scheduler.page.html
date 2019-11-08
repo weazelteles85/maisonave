@@ -15,8 +15,8 @@
     </ion-row>
   </div>
   <!-- ******** End Of Banner Area ********** -->
-  <ion-row class="pageContent">
-    <ion-col *ngIf="authService.user$ else notLoggedIn" offsetXl="2" sizeXl="8" size="12">
+  <ion-row *ngIf="authService.user$ | async else notLoggedIn" class="pageContent">
+    <ion-col offsetXl="2" sizeXl="8" size="12">
       <h2 class="centerText">Which day would you like to book an appointment?</h2>
     </ion-col>
     <ion-col class="centerText" size="12">
@@ -67,7 +67,7 @@
 </ng-template>
 
 <ng-template #notLoggedIn>
-  <ion-col class="centerText" offsetXl="2" sizeXl="8" size="12">
+  <ion-col class="centerText notLoggedIn" offsetXl="2" sizeXl="8" size="12">
     <h1>You must be logged into your account to book an appointment</h1>
     <span>
       <h3>Please log into your account by clicking <a [routerLink]="['/login']">here</a></h3>

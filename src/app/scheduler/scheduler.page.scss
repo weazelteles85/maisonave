@@ -27,6 +27,11 @@ ion-textarea.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
     margin: 6px;
 }
 
+.notLoggedIn {
+    position: relative;
+    top: 40px;
+}
+
 .cancelBtn {
     --height: ;
     --background: rgb(71, 0, 0);

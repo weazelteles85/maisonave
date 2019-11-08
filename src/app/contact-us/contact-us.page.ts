@@ -27,7 +27,7 @@ export class ContactUsPage implements OnInit {
       'name': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
       'description': new FormControl('', Validators.required)
-    })
+    });
   }
 
   sendEmail() {

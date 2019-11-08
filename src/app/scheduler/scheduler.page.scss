@@ -21,6 +21,16 @@ ion-textarea.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
     border-radius: 100px;
 }
 
+.userAppointment {
+    border: 1px rgb(95, 95, 95) solid;
+    border-radius: 10px;
+    margin: 6px;
+}
+
+.cancelBtn {
+    --height: ;
+}
+
 
 .pageContent {
     position: relative;

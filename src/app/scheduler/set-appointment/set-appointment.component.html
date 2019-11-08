@@ -1,8 +1,33 @@
 <ion-content>
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="6">Add Form</ion-col>
-      <ion-col size="6">To Book Appointment</ion-col>
+      <ion-col size="12">
+        <div class="centerText">
+          <h3>Appointment For</h3>
+          <h1>{{ selectedDate | date: 'fullDate' }}</h1>
+          <h2> at: {{ timeSlot | timeFormat }}</h2>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="appointmentForm" (ngSubmit)="setAppointment()">
+          <ion-item>
+            <ion-label>Name: </ion-label>
+            <ion-input formControlName="name" type="text" name="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Email: </ion-label>
+            <ion-input formControlName="email" type="email" name="description"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Reason For Visit: </ion-label>
+            <ion-textarea formControlName="desc" name="description"></ion-textarea>
+          </ion-item>
+          <ion-button [disabled]="!appointmentForm.valid" size="large" expand="full" ion-button type="submit" block>Submit
+          </ion-button>
+        </form>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

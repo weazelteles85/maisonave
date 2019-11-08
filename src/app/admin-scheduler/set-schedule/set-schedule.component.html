@@ -8,7 +8,7 @@
   </ion-row>
   <ion-grid>
       <ion-row *ngIf="scheduleSer.localWeekDays">
-        <ion-col *ngFor="let weekDay of checkIfSundayFirst()" class="weekDay">
+        <ion-col *ngFor="let weekDay of scheduleSer.localWeekDays" class="weekDay">
           <h3 class="centerText"> {{ weekDay.day }}</h3>
           <ion-item>
             <ion-label position='stacked'>Start:</ion-label>

@@ -2,7 +2,7 @@ import { auth } from 'firebase';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of, from } from 'rxjs';
-import { switchMap, } from 'rxjs/operators';
+import { switchMap, map, } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
@@ -16,6 +16,7 @@ import { DataStorageService } from './data-storage.service';
 export class AuthService {
 
   user$: Observable<User>;
+  localUser: User;
   email: string;
   emailSent = false;
   errorMessage: string;
@@ -40,10 +41,13 @@ export class AuthService {
       }
     }));
     this.storageService.listOfUsers = this.afs.collection('users').valueChanges();
+    this.user$.subscribe((user) => this.localUser = user);
   }
 
-  getUser() {
-    return this.user$;
+  getUser(): Promise<User> {
+    return this.user$.pipe(map((user) => {
+      return user;
+    })).toPromise();
   }
 
   // Login/Signup

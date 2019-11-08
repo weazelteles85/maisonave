@@ -49,6 +49,9 @@
         </ion-col>
       </ion-col>
     </ion-row>
+    <ion-button (click)="testRefresh()">
+      refresh
+    </ion-button>
 
     <ion-row>
       <ion-col size="12">
@@ -58,7 +61,7 @@
           <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
             [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
             (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"
-            [excludeDays]="excludeDays" weekStartsOn='weekStartDay'>
+            [excludeDays]="excludeDays" weekStartsOn='weekStartDay' (beforeViewRender)="beforeMonthViewRender($event)">
           </mwl-calendar-month-view>
           <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
             [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"

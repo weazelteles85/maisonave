@@ -1,13 +1,17 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit} from '@angular/core';
-import {startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth,  addHours } from 'date-fns';
+import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { Subject } from 'rxjs';
-import { CalendarEvent, CalendarEventTitleFormatter, CalendarEventAction, CalendarEventTimesChangedEvent,
-  CalendarView } from 'angular-calendar';
+import {
+  CalendarEvent, CalendarEventTitleFormatter, CalendarEventAction, CalendarEventTimesChangedEvent,
+  CalendarView,
+  CalendarMonthViewDay
+} from 'angular-calendar';
 
 //import { FlatpickrOptions } from 'ng2-flatpickr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Events } from '@ionic/angular';
 import { ScheduleService } from '../core/schedule.service';
+import { Appointments } from '../interfaces/appointments.interface';
 //import { MyEvents } from '../core/events.interface';
 
 const colors: any = {
@@ -42,14 +46,16 @@ export class AdminSchedulerPage implements OnInit {
   dayStartHour = 8;
   weekStartDay;
 
-  @ViewChild('modalContent', {  }) modalContent: TemplateRef<any>;
+  @ViewChild('modalContent', {}) modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
+
   modalData: {
     action: string;
     event: Events;
   };
+
   actions: CalendarEventAction[] = [
     {
       label: '<i class="far fa-edit"></i>',
@@ -70,12 +76,46 @@ export class AdminSchedulerPage implements OnInit {
 
   activeDayIsOpen: boolean = false;
   datePickerForm: FormGroup;
-  events: CalendarEvent[] = [];
+  events: CalendarEvent[] = [
+    {
+      title: 'string',
+      start: new Date(),
+      end: new Date(),
+    }
+  ];
 
   constructor(public scheduleServices: ScheduleService) { }
 
   ngOnInit() {
-    
+    this.scheduleServices.calendarEvents$.subscribe((events: Array<Appointments>) => {
+      console.log('inside subsctibe');
+      console.log(events);
+      events.forEach(event => {
+        this.events.push({
+          title: event.title,
+          start: new Date(event.start),
+          end: new Date(event.end)
+        });
+      });
+      console.log(events);
+      this.refresh.next();
+    });
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log('day Clicked');
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+      console.log(this.viewDate);
+    }
   }
 
   changeStartDay(event) {
@@ -96,6 +136,41 @@ export class AdminSchedulerPage implements OnInit {
 
   setView(view: CalendarView) {
     this.view = view;
+  }
+
+  addEvent(date): void {
+    console.log(date);
+    this.events = [
+      ...this.events,
+      {
+        title: 'Event Title Here',
+        start: startOfDay(date),
+        end: endOfDay(date.setDate(date.getDate() + 1)),
+        color: colors.red,
+        draggable: false,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        actions: this.actions
+      }
+    ];
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter(event => event !== eventToDelete);
+  }
+
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
+
+  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+    body.forEach(day => {
+      if (day.date.getDate() % 2 === 1) {
+        //day.cssClass = this.cssClass;
+      }
+    });
   }
 
 }

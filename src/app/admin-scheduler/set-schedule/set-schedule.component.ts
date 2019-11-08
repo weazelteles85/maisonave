@@ -12,7 +12,7 @@ export class SetScheduleComponent implements OnInit {
 
   dayTimeSelection: Array<number>;
   weekDays: Array<MyWeekday> = [];
-  sundayFirstWeek: Array<MyWeekday> = [];
+  //sundayFirstWeek: Array<MyWeekday> = [];
 
   constructor(public scheduleSer: ScheduleService) { }
 
@@ -21,11 +21,6 @@ export class SetScheduleComponent implements OnInit {
       0, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
       14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22,
     ];
-    this.scheduleSer.weekDays$.subscribe((weekdaysObj) => {
-      this.sundayFirstWeek = weekdaysObj['weekDays'];
-      const sunday = this.sundayFirstWeek.pop();
-      this.sundayFirstWeek.unshift(sunday);
-    });
   }
 
   changeStartValue(event, weekDay: MyWeekday) {
@@ -49,14 +44,6 @@ export class SetScheduleComponent implements OnInit {
     this.scheduleSer.updateWorkSchedule(weekdays);
   }
 
-  checkIfSundayFirst() {
-    if (this.scheduleSer.isSundayFirst) {
-      return this.sundayFirstWeek;
-    } else {
-      return this.scheduleSer.localWeekDays;
-    }
-  }
-
   getHourNumberFromString(time: string) {
     time = time.trim();
     if (time === 'Closed') {
@@ -76,6 +63,16 @@ export class SetScheduleComponent implements OnInit {
     console.log('returning: ', hour);
     return hour;
   }
+
+  // Editing to have Monday first feature has been excluded from this project
+  // checkIfSundayFirst() {
+  //   return this.scheduleSer.localWeekDays;
+  //   if (this.scheduleSer.isSundayFirst) {
+  //     return this.sundayFirstWeek;
+  //   } else {
+  //     return this.scheduleSer.localWeekDays;
+  //   }
+  // }
 
 
 

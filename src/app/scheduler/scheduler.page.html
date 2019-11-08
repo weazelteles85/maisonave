@@ -1,9 +1,9 @@
 <ion-show-when size="xl">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title class="centerText">Appointments</ion-title>
-        </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="centerText">Appointments</ion-title>
+    </ion-toolbar>
+  </ion-header>
 </ion-show-when>
 <ion-content>
   <!-- ******** Banner Area ********** -->
@@ -15,8 +15,41 @@
     </ion-row>
   </div>
   <!-- ******** End Of Banner Area ********** -->
-  <ion-row>
-
+  <ion-row class="pageContent">
+    <ion-col *ngIf="authService.user$ else notLoggedIn" offsetXl="2" sizeXl="8" size="12">
+      <h2 class="centerText">Which day would you like to book an appointment?</h2>
+    </ion-col>
+    <ion-col class="centerText" size="12">
+      <form [formGroup]="datePickerForm" (ngSubmit)="addEvent()">
+        <ng2-flatpickr class="calendarContainer" placeholder="Pick a date!" [config]="exampleOptions"
+          formControlName="datePicker"></ng2-flatpickr>
+      </form>
+    </ion-col>
   </ion-row>
+  <hr>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col class="centerText" *ngFor="let timeSlot of availableSlots" size="2">
+        <ion-button class="bookItBtn" expand="full" size="large" (click)="presentAppointmentModal(timeSlot)">
+          {{ timeSlot | timeFormat }}<br>
+          Book it
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
   <div class="footerSpace"></div>
 </ion-content>
+
+<ng-template #notLoggedIn>
+  <ion-col class="centerText" offsetXl="2" sizeXl="8" size="12">
+    <h1>You must be logged into your account to book an appointment</h1>
+    <span>
+      <h3>Please log into your account by clicking <a [routerLink]="['/login']">here</a></h3>
+    </span>
+    <span>
+      <h3>Or register a new account by clicking <a [routerLink]="['/register']">here</a></h3>
+    </span>
+  </ion-col>
+</ng-template>

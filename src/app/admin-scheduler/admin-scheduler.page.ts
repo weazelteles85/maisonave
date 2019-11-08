@@ -7,6 +7,7 @@ import { CalendarEvent, CalendarEventTitleFormatter, CalendarEventAction, Calend
 //import { FlatpickrOptions } from 'ng2-flatpickr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Events } from '@ionic/angular';
+import { ScheduleService } from '../core/schedule.service';
 //import { MyEvents } from '../core/events.interface';
 
 const colors: any = {
@@ -39,6 +40,7 @@ export class AdminSchedulerPage implements OnInit {
 
   excludeDays: number[] = [];
   dayStartHour = 8;
+  weekStartDay;
 
   @ViewChild('modalContent', {  }) modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
@@ -70,9 +72,21 @@ export class AdminSchedulerPage implements OnInit {
   datePickerForm: FormGroup;
   events: CalendarEvent[] = [];
 
-  constructor() { }
+  constructor(public scheduleServices: ScheduleService) { }
 
   ngOnInit() {
+    
+  }
+
+  changeStartDay(event) {
+    if (event.detail.checked) {
+      this.weekStartDay = 0;
+      this.refresh.next();
+    } else {
+      this.weekStartDay = 1;
+      this.refresh.next();
+    }
+    console.log(this.weekStartDay);
   }
 
   handleEvent(action: string, event): void {

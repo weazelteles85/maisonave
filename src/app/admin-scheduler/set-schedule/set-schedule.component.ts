@@ -12,7 +12,6 @@ export class SetScheduleComponent implements OnInit {
 
   dayTimeSelection: Array<number>;
   weekDays: Array<MyWeekday> = [];
-  isSundayFirst = true;
   sundayFirstWeek: Array<MyWeekday> = [];
 
   constructor(public scheduleSer: ScheduleService) { }
@@ -51,7 +50,7 @@ export class SetScheduleComponent implements OnInit {
   }
 
   checkIfSundayFirst() {
-    if (this.isSundayFirst) {
+    if (this.scheduleSer.isSundayFirst) {
       return this.sundayFirstWeek;
     } else {
       return this.scheduleSer.localWeekDays;

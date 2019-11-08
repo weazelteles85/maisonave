@@ -12,12 +12,16 @@
 @import '~firebaseui/dist/firebaseui.css';
 
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/flatpickr/dist/flatpickr.min.css";
+@import "flatpickr/dist/themes/airbnb.css";
 
 .myHeader {
     background-color: blue;
     margin-bottom: 200px;
     position: absolute;
 }
+
+
 
 
 ion-item {

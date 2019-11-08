@@ -11,6 +11,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SetScheduleComponent } from './set-schedule/set-schedule.component';
 import { AppModule } from '../app.module';
 import { TimeFormatPipe } from '../shared/time-format.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -30,6 +32,6 @@ const routes: Routes = [
       useFactory: adapterFactory
     })
   ],
-  declarations: [AdminSchedulerPage, SetScheduleComponent, TimeFormatPipe]
+  declarations: [AdminSchedulerPage, SetScheduleComponent]
 })
 export class AdminSchedulerPageModule { }

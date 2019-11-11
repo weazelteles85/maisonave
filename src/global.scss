@@ -50,6 +50,10 @@ ion-content p, h4, h5, h6 {
     font-family: 'Noto Sans',sans-serif;
 }
 
+ion-button {
+    --background: #5EA549;
+}
+
 
 ion-icon {
     color: #5EA549;
@@ -71,6 +75,11 @@ ion-footer img {
 ion-footer p {
     margin: 0px;
     padding: 0px;
+}
+
+.cancelBtn {
+    --height: 40px;
+    --background: rgb(71, 0, 0);
 }
 
 .footerSpace {

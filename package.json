@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-optimizer": "^0.803.18",
     "@angular/animations": "^8.2.13",
     "@angular/common": "~6.1.1",
     "@angular/core": "~6.1.1",
@@ -44,6 +45,7 @@
     "node-sass": "^4.12.0",
     "rxjs": "6.2.2",
     "stripe": "^6.15.0",
+    "tslib": "^1.10.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
   },

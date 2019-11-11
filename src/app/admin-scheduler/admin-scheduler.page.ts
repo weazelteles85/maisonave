@@ -7,7 +7,7 @@ import {
   CalendarMonthViewDay
 } from 'angular-calendar';
 
-//import { FlatpickrOptions } from 'ng2-flatpickr';
+import { FlatpickrOptions } from 'ng2-flatpickr';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Events } from '@ionic/angular';
 import { ScheduleService } from '../core/schedule.service';

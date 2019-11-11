@@ -23,7 +23,7 @@ export class SchedulerPage implements OnInit, AfterContentInit {
   appointments: Array<Appointments>;
   selectedDate: Date;
 
-  constructor(public authService: AuthService, private scheduleService: ScheduleService, public modalController: ModalController) { }
+  constructor(public authService: AuthService, public scheduleService: ScheduleService, public modalController: ModalController) { }
 
   ngOnInit() {
     this.datePickerForm = new FormGroup({

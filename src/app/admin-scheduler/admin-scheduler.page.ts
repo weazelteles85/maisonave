@@ -28,7 +28,7 @@ const colors: any = {
   }
 };
 
-class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   month(event: Appointments): string {
     let ampm = "AM";
     let hr = event.start.getHours();
@@ -104,6 +104,9 @@ export class AdminSchedulerPage implements OnInit {
       events.forEach(element => {
         element.start = new Date(element.start.seconds * 1000);
         element.end = new Date(element.end.seconds * 1000);
+        if (element.start < new Date()) {
+          element.color = colors.red;
+        }
       });
       this.events = events;
     });

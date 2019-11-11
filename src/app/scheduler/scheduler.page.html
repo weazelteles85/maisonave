@@ -33,8 +33,14 @@
         <div>
           <ion-button [disabled]="isSlotUnavailable(timeSlot)" class="bookItBtn" expand="full" size="large"
             (click)="presentAppointmentModal(timeSlot)">
-            {{ timeSlot | timeFormat }}<br>
-            Book it
+            <div *ngIf="!isSlotUnavailable(timeSlot)">
+              {{ timeSlot | timeFormat }}<br>
+              Book it
+            </div>
+            <div *ngIf="isSlotUnavailable(timeSlot)">
+              {{ timeSlot | timeFormat }}<br>
+              Unavailable
+            </div>
           </ion-button>
         </div>
 
@@ -45,7 +51,8 @@
         <h3>Your Current Appointments</h3>
         <div *ngFor="let userAppointment of userAppointments">
           <ion-item class="userAppointment">
-            <ion-label>{{ userAppointment.start.toDate() | date: 'fullDate' }} at {{ userAppointment.hourSlot | timeFormat }}</ion-label>
+            <ion-label>{{ userAppointment.start.toDate() | date: 'fullDate' }} at
+              {{ userAppointment.hourSlot | timeFormat }}</ion-label>
             <ion-button fill="solid" class="cancelBtn" (click)="onDeleteAppointment(userAppointment)">
               <ion-label>Cancel Appointment</ion-label>
               <ion-icon color="danger" slot="icon-only" name="trash"></ion-icon>

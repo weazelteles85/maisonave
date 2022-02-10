@@ -42,7 +42,7 @@
     "firebaseui-angular": "^3.3.2",
     "flatpickr": "^4.6.3",
     "ng2-flatpickr": "^8.0.5",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "rxjs": "6.2.2",
     "stripe": "^6.15.0",
     "tslib": "^1.10.0",

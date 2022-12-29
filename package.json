@@ -13,7 +13,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-optimizer": "^0.803.18",
+    "@angular-devkit/build-optimizer": "^0.1302.1",
     "@angular/animations": "^8.2.13",
     "@angular/common": "~6.1.1",
     "@angular/core": "~6.1.1",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.7.2",
-    "@angular-devkit/build-angular": "^0.12.4",
+    "@angular-devkit/build-angular": "^15.0.4",
     "@angular-devkit/core": "~0.7.2",
     "@angular-devkit/schematics": "~0.7.2",
     "@angular/cli": "~6.1.1",
